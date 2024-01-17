@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Nelt report</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css?family=Open%20Sans:400,500,600,700');
+
+      html,
+      body {
+        height: auto !important;
+        font-family: 'Open Sans', Helvetica, sans-serif;
+      }
+
+      .flex {
+        display: flex;
+      }
+      .justify-center {
+        justify-content: center;
+      }
+      .space-between {
+        justify-content: space-between;
+      }
+
+      .title-1 {
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 24px;
+      }
+      .title-2 {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 22px;
+      }
+      .title-3 {
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 19px;
+      }
+      .subtitle {
+        font-size: 14px;
+        color: #63747e;
+        line-height: 19px;
+      }
+
+      .mb-4 {
+        margin-bottom: 4px;
+      }
+      .mt-8 {
+        margin-top: 8px;
+      }
+      .mt-15 {
+        margin-top: 15px;
+      }
+      .mt-20 {
+        margin-top: 20px;
+      }
+      .mt-25 {
+        margin-top: 25px;
+      }
+      .mb-24 {
+        margin-bottom: 24px;
+      }
+      .py-25 {
+        padding: 25px 0;
+      }
+      .pt-15 {
+        padding-top: 15px;
+      }
+      .pb-15 {
+        padding-bottom: 15px;
+      }
+
+      .border-b {
+        border-bottom: 1px solid #e2e5eb;
+      }
+
+      .text-center {
+        text-align: center;
+      }
+      .text-right {
+        text-align: right;
+      }
+
+      table thead tr td {
+        color: #63747e;
+        font-size: 14px;
+      }
+
+      .pharmacy thead tr td {
+        padding-bottom: 4px;
+      }
+      .pharmacy td:first-child {
+        width: 44%;
+      }
+      .pharmacy td:nth-child(2) {
+        width: 16%;
+        padding-left: 47px;
+      }
+      .pharmacy td:last-child {
+        width: 18.5%;
+        text-align: right;
+        padding-left: 30px;
+      }
+      .truncate {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        max-width: 100px;
+      }
+
+      .products tbody td {
+        font-size: 14px;
+      }
+      .products thead tr td {
+        padding-bottom: 8px;
+      }
+      .products tbody tr td:not(first-child) {
+        padding-bottom: 4px;
+      }
+      .products td:first-child {
+        width: 30%;
+      }
+      .products td:nth-child(2) {
+        width: 9.2%;
+        text-align: center;
+        padding-left: 51px;
+      }
+      .products td:nth-child(3) {
+        width: 10.2%;
+        text-align: center;
+        padding-left: 30px;
+      }
+      .products td:nth-child(4) {
+        width: 6.4%;
+        text-align: center;
+        padding-left: 30px;
+      }
+      .products td:last-child {
+        width: 9.2%;
+        text-align: right;
+        padding-left: 30px;
+      }
+
+      .order-cost {
+        color: #63747e;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 16px;
+        text-align: right;
+      }
+      .order-cost span {
+        display: inline-block;
+        min-width: 74px;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 19px;
+        color: #283033;
+      }
+      .order-cost:first-of-type {
+        margin-top: 15px;
+      }
+
+      .total {
+        text-align: right;
+        font-size: 16px;
+        line-height: 19px;
+        color: #63747e;
+      }
+      .total span {
+        display: inline-block;
+        min-width: 80px;
+        color: #283033;
+        font-weight: 700;
+      }
+      .total:not(:first-child) {
+        margin-top: 5px;
+      }
+
+      @page {
+        size: A4;
+      }
+
+      @media print {
+        .content-block,
+        p {
+          page-break-inside: avoid;
+        }
+
+        html,
+        body {
+          width: 210mm;
+          height: 258mm;
+          print-color-adjust: exact;
+          -webkit-print-color-adjust: exact;
+        }
+      }
+
+      p,
+      td {
+        margin: 0;
+        color: #283033;
+        line-height: 14px;
+        vertical-align: top;
+      }
+    </style>
+  </head>
+  <body></body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+<script id="entry-template" type="text/x-handlebars-template">
+  <section class='page'>
+
+    <div class='pb-15'>
+      <p class='title-1 mb-4'>Some simple title</p>
+      <p class='subtitle'>
+        Description.
+      </p>
+    </div>
+    <h3>{{this.name}}</h3>
+
+    {{#each this.commendations}}
+      <p>{{this.text}}</p>
+      <p>{{this.author}}</p>
+      <p>{{this.department}}</p>
+      <p>{{this.country}}</p>
+    {{/each}}
+
+  </section>
+</script>
+<script>
+  var source = document.getElementById('entry-template').innerHTML;
+  var template = Handlebars.compile(source);
+  var context = { title: 'Nelt Report', body: 'Nelt Report' };
+  var html = template(context);
+  document.body.innerHTML = html;
+</script>
